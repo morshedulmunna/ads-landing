@@ -5,11 +5,11 @@ import { img1, img2 } from "@/assets";
 export default function Home() {
   return (
     <>
-      <div className="max-w-screen-xl py-20 mx-auto h-full px-12">
+      <div className=" w-full lg:max-w-screen-xl py-20 mx-auto h-full lg:px-12">
         <div className="bg-white shadow-sm w-full flex justify-center items-center p-4">
           <div className=" flex flex-col justify-center items-center w-full">
             <Logo />
-            <h2 className="text-4xl max-w-4xl mt-6 leading-[60px] font-bold text-center">
+            <h2 className="text-lg md:text-xl lg:text-4xl max-w-4xl mt-6 lg:leading-[60px] font-bold text-center">
               সুপার ধামাকা অফার!! মাত্র ১২৭০/- টাকায় এই প্যাকেজে থাকছে ৪টি
               প্রিমিয়াম আতর ও এর সাথে একটি ব্রান্ড নিউ ঘড়ি ফ্রী।
             </h2>
@@ -33,41 +33,39 @@ export default function Home() {
               <span>অর্ডার করতে ক্লিক করুন</span>
             </button>
 
-            <div className="mt-8 rounded w-full h-[650px]">
+            <div className="mt-8 rounded w-full lg:h-[650px]">
               <video
                 controls
                 className="w-full rounded h-full"
                 src="https://www.youtube.com/watch?v=YcWv7QEF5T8"
               ></video>
             </div>
-            <p className="mt-6 text-2xl font-semibold">
-              সিমিত সময়ের জন্য কম্বো প্যাকটিx
+            <p className="mt-6 text-base lg:text-2xl font-semibold">
+              সিমিত সময়ের জন্য কম্বো প্যাকটি:
             </p>
 
-            <div className="flex items-center mt-8 text-5xl font-bold">
-              <div className="p-4 flex items-center flex-col gap-2 w-52 rounded border">
+            <div className="flex gap-2  items-center mt-8 text-xl lg:text-5xl font-bold">
+              <div className="p-2 lg:p-4 flex items-center flex-col gap-2 w-[70px] lg:w-52 rounded border">
                 <p>২৪</p>
                 <p className="text-sm">দিন</p>
               </div>
-              <div className="p-4 flex items-center flex-col gap-2 w-52 rounded border">
+              <div className="p-2 lg:p-4 flex items-center flex-col gap-2 w-[70px] lg:w-52 rounded border">
                 <p>১৪</p>
                 <p className="text-sm">ঘন্টা</p>
               </div>
-              <div className="p-4 flex items-center flex-col gap-2 w-52 rounded border">
+              <div className="p-2 lg:p-4 flex items-center flex-col gap-2 w-[70px] lg:w-52 rounded border">
                 <p>১০</p>
                 <p className="text-sm">মিনিট</p>
               </div>
-              <div className="p-4 flex items-center flex-col gap-2 w-52 rounded border">
+              <div className="p-2 lg:p-4 flex items-center flex-col gap-2 w-[70px] lg:w-52 rounded border">
                 <p>৯</p>
                 <p className="text-sm">সেকেন্ট</p>
               </div>
             </div>
 
-            {/* দফঝ */}
-
-            <div className="flex w-full h-full gap-4 mt-20 items-center">
-              <div className="w-1/2">
-                <h2 className="mb-6 text-2xl font-semibold leading-relaxed ">
+            <div className="flex flex-col lg:flex-row w-full h-full lg:p-4 mt-20 items-center">
+              <div className=" w-full lg:w-1/2">
+                <h2 className="mb-6 lg:text-2xl font-semibold leading-relaxed ">
                   সুপার ধামাকা অফার!! মাত্র ১২৭০/- টাকায় এই প্যাকেজে থাকছে ৪টি
                   প্রিমিয়াম আতর ও এর সাথে একটি ব্রান্ড নিউ ঘড়ি ফ্রী।
                 </h2>
@@ -77,23 +75,62 @@ export default function Home() {
                   <li>✅ মেশক আম্বার ৩মিলি,</li>
                 </ul>
               </div>
-              <div className="w-1/2 relative h-full">
+              <div className=" w-full mt-4 lg:mt-0 lg:w-1/2 relative h-full">
                 <Image src={img1} alt="img1" className="" />
                 <Image
                   src={img2}
                   alt="img1"
-                  className=" absolute right-32 top-56"
+                  className=" absolute left-32 lg:right-32 top-64 md:top-72 lg:top-56"
                 />
               </div>
             </div>
 
-            <p className="text-center mt-40 max-w-screen-xl px-6 text-2xl leading-relaxed">
+            <p className="text-center mt-40  px-2 lg:px-6 text-lg lg:text-xl leading-relaxed">
               মোট ১২মিলি আতর আর সাথে থাকছে একটি ঘড়ি ফ্রী । আমদের স্টকে থাকা মডেল
               থেকে যেকোন একটি ঘড়ি চয়েজ করতে পারবেন।আর সাথে পাবেন ৭দিনের
               রিপ্লেস্মেন্ট গ্যারান্টি।ইনশাআল্লাহ। অফার আরও সর্ম্পকে বিস্তারিত
               জানতে আমাদের ম্যাসেজ করুন।একটাকাও অগ্রিম পেমেন্ট করতে হবে না।
               সর্ম্পুন ক্যাশঅন ডেলিভারিতে আতর ঘড়ি চেক করে তার পর পেমেন্ট করবেন।
             </p>
+
+            <div className="w-full mt-24 gap-2 flex flex-col lg:flex-row">
+              <div className="w-full lg:space-y-2 lg:flex-col flex gap-2 items-center  lg:w-40">
+                <div className="border lg:h-24 rounded w-full"></div>
+                <div className="border lg:h-24 rounded w-full"></div>
+                <div className="border lg:h-24 rounded w-full"></div>
+                <div className="border lg:h-24 rounded w-full"></div>
+              </div>
+              <div className="w-full flex gap-2 flex-col lg:flex-row h-full ">
+                <div className=" w-full lg:w-1/2 h-[410px] bg-gray-200"></div>
+                <div className=" w-full lg:w-1/2 h-full">
+                  <ul className="list-disc space-y-4 pl-4 lg:pl-6 text-sm leading-6">
+                    <li>
+                      মোট ১২মিলি আতর আর সাথে থাকছে একটি ঘড়ি ফ্রী । আমদের স্টকে
+                      থাকা মডেল থেকে যেকোন একটি ঘড়ি চয়েজ করতে পারবেন।আর সাথে
+                      পাবেন ৭দিনের রিপ্লেস্মেন্ট গ্যারান্টি।ইনশাআল্লাহ। অফার আরও
+                      সর্ম্পকে বিস্তারিত জানতে আমাদের ম্যাসেজ করুন।একটাকাও
+                      অগ্রিম পেমেন্ট করতে হবে না। সর্ম্পুন ক্যাশঅন ডেলিভারিতে
+                      আতর ঘড়ি চেক করে তার পর পেমেন্ট করবেন।
+                    </li>
+
+                    <li>
+                      দাম ১২৭০/- টাকা মাত্র। ডেলিভারি চার্জ ঢাকার ভিতর ৬০ টাকা
+                      ঢাকার বাহিরে ১২০টাকা।অফার স্টক থাকাকালীন পর্যন্ত প্রযোজ্য।
+                    </li>
+
+                    <li>
+                      দাম ১২৭০/- টাকা মাত্র। ডেলিভারি চার্জ ঢাকার ভিতর ৬০ টাকা
+                      ঢাকার বাহিরে ১২০টাকা।অফার স্টক থাকাকালীন পর্যন্ত প্রযোজ্য।
+                    </li>
+
+                    <li>
+                      দাম ১২৭০/- টাকা মাত্র। ডেলিভারি চার্জ ঢাকার ভিতর ৬০ টাকা
+                      ঢাকার বাহিরে ১২০টাকা।অফার স্টক থাকাকালীন পর্যন্ত প্রযোজ্য।
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
