@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Logo from "./components/Logo";
 import { img1, img2 } from "@/assets";
+import OrderForm from "./components/OrderForm";
 
 export default function Home() {
   return (
@@ -182,6 +183,8 @@ export default function Home() {
             <div className="mt-20 w-full bg-green-500 text-center py-6 text-xl px-6 lg:text-2xl font-bold text-white">
               আমাদের থেকেই কেন নিবেন?
             </div>
+
+            <OrderForm />
           </div>
         </div>
       </div>
