@@ -21,7 +21,9 @@ impl ProductService for MyProductService {
         // Mock product details
         let response = ProductResponse {
             product_id: product_id.clone(),
-            name: "Sample Product".to_string(),
+            name: "Sample
+             Product"
+                .to_string(),
             price: 99.99,
         };
 

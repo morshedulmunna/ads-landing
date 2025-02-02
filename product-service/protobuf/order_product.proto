@@ -2,6 +2,7 @@ syntax = "proto3";
 
 
 package order_product;
+option go_package = "github.com/morshedulmunna/order-service";
 
 service ProductService {
   rpc GetProductDetails (ProductRequest) returns (ProductResponse);
