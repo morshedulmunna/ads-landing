@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package product;
+
+// Import Timestamp for date-related fields
+import "google/protobuf/timestamp.proto";
+
+// Message representing a Product Category
+message Category {
+    string category_id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+// Message representing a Supplier
+message Supplier {
+    string supplier_id = 1;
+    string name = 2;
+    string contact_email = 3;
+    string phone_number = 4;
+}
+
+// Message representing a Product
+message Product {
+    string product_id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+    int32 stock_quantity = 5;
+    Category category = 6;
+    Supplier supplier = 7;
+    google.protobuf.Timestamp created_at = 8;
+    ProductStatus status = 9;
+}
+
+// Enum representing the status of a Product
+enum ProductStatus {
+    AVAILABLE = 0;
+    OUT_OF_STOCK = 1;
+    DISCONTINUED = 2;
+}
+
+// Request message to create a Product
+message CreateProductRequest {
+    string name = 1;
+    string description = 2;
+    double price = 3;
+    int32 stock_quantity = 4;
+    string category_id = 5;
+    string supplier_id = 6;
+}
+
+// Response message after creating a Product
+message CreateProductResponse {
+    Product product = 1;
+}
+
+// Request message to retrieve a Product by ID
+message GetProductRequest {
+    string product_id = 1;
+}
+
+// Response message for retrieving a Product
+message GetProductResponse {
+    Product product = 1;
+}
+
+// Request message to update a Product
+message UpdateProductRequest {
+    string product_id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+    int32 stock_quantity = 5;
+    ProductStatus status = 6;
+}
+
+// Response message after updating a Product
+message UpdateProductResponse {
+    Product product = 1;
+}
+
+// Request message to list all Products
+message ListProductsRequest {
+    int32 page = 1;
+    int32 limit = 2;
+}
+
+// Response message for listing Products
+message ListProductsResponse {
+    repeated Product products = 1;
+    int32 total = 2;
+}
+
+// Service definition for managing Products
+service ProductService {
+    rpc CreateProduct (CreateProductRequest) returns (CreateProductResponse);
+    rpc GetProduct (GetProductRequest) returns (GetProductResponse);
+    rpc UpdateProduct (UpdateProductRequest) returns (UpdateProductResponse);
+    rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
+}
