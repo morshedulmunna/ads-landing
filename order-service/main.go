@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"go/order-service/microservices/proto"
+	rabbitmq "go/rabitmq"
 	"log"
 	"net"
 
@@ -28,6 +29,20 @@ func (s *server) GetOrders(ctx context.Context, req *proto.GetOrdersRequest) (*p
 }
 
 func main() {
+
+	// Connect to RabbitMQ
+	conn, err := rabbitmq.Connect()
+	if err != nil {
+		log.Fatalf("Failed to connect to RabbitMQ: %v", err)
+	}
+	defer conn.Close()
+
+	ch, err := rabbitmq.CreateChannel(conn)
+	if err != nil {
+		log.Fatalf("Failed to open a channel: %v", err)
+	}
+	defer ch.Close()
+
 	lis, err := net.Listen("tcp", ":50052")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
