@@ -3,10 +3,9 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"go/api-getway/proto"
 	"log"
 	"net/http"
-
-	"go/api-getway/microservices/proto"
 
 	"github.com/gorilla/mux"
 	"google.golang.org/grpc"

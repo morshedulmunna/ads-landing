@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package product;
 
-option go_package = "microservices/proto";
+option go_package = "/proto";
 
 service ProductService {
     rpc CreateProduct (CreateProductRequest) returns (CreateProductResponse);

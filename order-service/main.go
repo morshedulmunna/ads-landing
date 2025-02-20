@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"go/order-service/microservices/proto"
+	"go/order-service/proto"
 	rabbitmq "go/rabitmq"
 	"log"
 	"net"

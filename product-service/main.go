@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"go/product-service/microservices/proto"
+	"go/product-service/proto"
 	"log"
 	"net"
 
