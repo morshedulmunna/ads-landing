@@ -1,0 +1,8 @@
+go 1.23.3
+
+use (
+	./api-getway
+	./order-service
+	./product-service
+	./rabbitmq
+)

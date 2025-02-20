@@ -2,57 +2,55 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"go/order-service/proto"
+	rabbitmq "go/rabitmq"
 	"log"
 	"net"
 
 	"google.golang.org/grpc"
 )
 
-type orderServiceServer struct {
+type server struct {
 	proto.UnimplementedOrderServiceServer
 }
 
-func (s *orderServiceServer) CreateOrder(ctx context.Context, req *proto.OrderRequest) (*proto.OrderResponse, error) {
-	productID := req.GetProductId()
-	quantity := req.GetQuantity()
+func (s *server) CreateOrder(ctx context.Context, req *proto.CreateOrderRequest) (*proto.CreateOrderResponse, error) {
+	log.Printf("Order Created for Product ID: %v", req.ProductId)
+	return &proto.CreateOrderResponse{Id: "456"}, nil
+}
 
-	// Call ProductService to get product details
-	conn, err := grpc.NewClient("localhost:50051", grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf("Failed to connect to ProductService: %v", err)
-	}
-	defer conn.Close()
-
-	client := proto.NewProductServiceClient(conn)
-	productResp, err := client.GetProductDetails(ctx, &proto.ProductRequest{ProductId: productID})
-	if err != nil {
-		log.Fatalf("Failed to get product details: %v", err)
-	}
-
-	// Calculate total price
-	totalPrice := productResp.GetPrice() * float32(quantity)
-
-	// Return order response
-	return &proto.OrderResponse{
-		OrderId:    "order-123",
-		ProductId:  productID,
-		Quantity:   quantity,
-		TotalPrice: totalPrice,
+func (s *server) GetOrders(ctx context.Context, req *proto.GetOrdersRequest) (*proto.GetOrdersResponse, error) {
+	log.Println("Fetching Orders")
+	return &proto.GetOrdersResponse{
+		Orders: []*proto.Order{
+			{Id: "456", ProductId: "123", Quantity: 2},
+		},
 	}, nil
 }
 
 func main() {
+
+	// Connect to RabbitMQ
+	conn, err := rabbitmq.Connect()
+	if err != nil {
+		log.Fatalf("Failed to connect to RabbitMQ: %v", err)
+	}
+	defer conn.Close()
+
+	ch, err := rabbitmq.CreateChannel(conn)
+	if err != nil {
+		log.Fatalf("Failed to open a channel: %v", err)
+	}
+	defer ch.Close()
+
 	lis, err := net.Listen("tcp", ":50052")
 	if err != nil {
-		log.Fatalf("Failed to listen: %v", err)
+		log.Fatalf("failed to listen: %v", err)
 	}
-
-	grpcServer := grpc.NewServer()
-	proto.RegisterOrderServiceServer(grpcServer, &orderServiceServer{})
-
-	fmt.Println("OrderService running on :50052")
-	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatalf("Failed to serve: %v", err)
+	s := grpc.NewServer()
+	proto.RegisterOrderServiceServer(s, &server{})
+	log.Println("Order Service is running on :50052")
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
 	}
 }
